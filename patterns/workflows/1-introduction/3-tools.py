@@ -2,9 +2,11 @@ import json
 import os
 
 import requests
+from dotenv import load_dotenv
 from openai import OpenAI
 from pydantic import BaseModel, Field
 
+load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 """
@@ -116,3 +118,4 @@ completion_2 = client.beta.chat.completions.parse(
 final_response = completion_2.choices[0].message.parsed
 final_response.temperature
 final_response.response
+print(final_response)

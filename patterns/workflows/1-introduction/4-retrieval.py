@@ -1,9 +1,11 @@
 import json
 import os
 
+from dotenv import load_dotenv
 from openai import OpenAI
 from pydantic import BaseModel, Field
 
+load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 """
@@ -110,6 +112,7 @@ completion_2 = client.beta.chat.completions.parse(
 final_response = completion_2.choices[0].message.parsed
 final_response.answer
 final_response.source
+print(final_response)
 
 # --------------------------------------------------------------
 # Question that doesn't trigger the tool
@@ -126,4 +129,5 @@ completion_3 = client.beta.chat.completions.parse(
     tools=tools,
 )
 
-completion_3.choices[0].message.content
+var = completion_3.choices[0].message.content
+print(var)

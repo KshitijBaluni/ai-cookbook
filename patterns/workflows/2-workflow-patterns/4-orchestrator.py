@@ -1,4 +1,6 @@
 from typing import List, Dict
+
+from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from openai import OpenAI
 import os
@@ -12,7 +14,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
+load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 model = "gpt-4o-mini"
 
